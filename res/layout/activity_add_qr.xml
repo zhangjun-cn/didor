@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.dali.didor.AddQRActivity" >
+    
+    <Button
+        android:id="@+id/name"
+        style="@style/ActionButton"/>
+    
+    <Spinner
+        android:id="@+id/sDates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="10dp"/>
+    <Spinner
+        android:id="@+id/sMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_toRightOf="@+id/sDates"/>
+    <Spinner
+        android:id="@+id/sDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_toRightOf="@+id/sMonth"/>
+    <Spinner
+        android:id="@+id/times"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sDates"
+        android:layout_alignParentRight="true"/>
+    <Button
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/times"
+        android:layout_alignParentRight="true"
+        android:text="done"/>
+
+</RelativeLayout>

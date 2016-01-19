@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">didor</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="main_action_title">提醒</string>
+    <string name="main_add_reminder">设定提醒</string>
+    <string name="main_add_friend">添加朋友</string>
+    <string name="main_add_qr">扫一扫</string>
+    <string name="main_tab_reminder">提醒</string>
+    <string name="main_tab_contacts">通讯录</string>
+    <string name="main_tab_discover">发现</string>
+    <string name="main_tab_me">我</string>
+    <string name="add_reminder_action_title">返回</string>
+    <string name="empty"></string>
+    <string name="title_activity_add_reminder">AddReminderActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_add_qr">AddQRActivity</string>
+    <string name="title_activity_add_friend">AddFriendActivity</string>
+    <string name="date_template" formatted="false">%d年%d月%d日 周%s %d:%d</string>
+    <string name="title_activity_pick_date_time">PickDateTimeActivity</string>
+    <string name="title_activity_pick_datetime">PickDatetimeActivity</string>
+
+    <string name="confirm">确定</string>
+</resources>

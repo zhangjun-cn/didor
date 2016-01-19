@@ -1,0 +1,34 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.dali.didor.MainActivity" >
+
+    <item
+        android:id="@+id/action_show_calendar"
+        android:layout_alignParentLeft="true"
+        android:icon="@drawable/calendar"
+        android:orderInCategory="99"
+        android:showAsAction="ifRoom|collapseActionView"
+        android:title="@string/empty"/>
+
+    <item
+        android:id="@+id/action_add_reminder"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:icon="@drawable/ai_reminder"
+        android:title="@string/main_add_reminder"/>
+    
+    <item
+        android:id="@+id/action_add_friend"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:icon="@drawable/ai_friend"
+        android:title="@string/main_add_friend"/>
+    
+    <item
+        android:id="@+id/action_add_qr"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:icon="@drawable/ai_qr"
+        android:title="@string/main_add_qr"/>
+
+</menu>
