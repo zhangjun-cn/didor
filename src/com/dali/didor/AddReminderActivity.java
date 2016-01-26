@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.dali.didor.alarm.AlarmReceiver;
 import com.dali.didor.db.AlarmDatabaseHelper;
@@ -27,6 +28,8 @@ public class AddReminderActivity extends Activity {
 	
 	private Button pickDateBtn;
 	
+	private EditText content;
+	
 	private Datetime datetime;
 	
 	private AlarmDatabaseHelper alarmDatabaseHelper;
@@ -35,7 +38,7 @@ public class AddReminderActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_reminder);
-		getActionBar().setTitle(R.string.add_reminder_action_title);
+		getActionBar().setTitle(R.string.ac_ar_title);
 		getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
@@ -56,10 +59,11 @@ public class AddReminderActivity extends Activity {
 			}
 		});
 
+		content = (EditText) findViewById(R.id.ac_armd_content);
 		Button setBtn = (Button) findViewById(R.id.ac_armd_set);
 		setBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				addData(datetime.toString(), "", "");
+				addData(datetime.toString(), content.getText().toString(), "");
 				AlarmManager mAlarm = (AlarmManager) getSystemService(Service.ALARM_SERVICE);
 				Intent intent = new Intent(AddReminderActivity.this, AlarmReceiver.class);
 				Bundle bundle=new Bundle();

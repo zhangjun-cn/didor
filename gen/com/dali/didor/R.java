@@ -14,13 +14,19 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int black=0x7f060009;
+        public static final int floralwhite=0x7f060006;
         public static final int main_tab_bg=0x7f060001;
         public static final int main_tab_selected_text=0x7f060003;
         public static final int main_tab_text=0x7f060002;
+        public static final int orange=0x7f060008;
         /**  Retrieved via Resources.getColor() and friends. 
          */
         public static final int red=0x7f060000;
-        public static final int tab_selector_tv_color=0x7f060004;
+        public static final int slategray=0x7f060005;
+        public static final int tab_selector_tv_color=0x7f06000a;
+        public static final int tomato=0x7f060007;
+        public static final int wheat=0x7f060004;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -46,44 +52,56 @@ public final class R {
         public static final int main_tab_reminder=0x7f020009;
         public static final int plus=0x7f02000a;
         public static final int reminder=0x7f02000b;
+        public static final int reminder_edittext_shape=0x7f02000c;
         /**  Retrieved via Resources.getDrawable() and friends. 
          */
-        public static final int semi_black=0x7f020016;
-        public static final int tab_border=0x7f02000c;
-        public static final int tab_contacts=0x7f02000d;
-        public static final int tab_contacts_selected=0x7f02000e;
-        public static final int tab_discover=0x7f02000f;
-        public static final int tab_discover_selected=0x7f020010;
-        public static final int tab_me=0x7f020011;
-        public static final int tab_me_selected=0x7f020012;
-        public static final int tab_reminder=0x7f020013;
-        public static final int tab_reminder_selected=0x7f020014;
-        public static final int tab_selector_checked_bg=0x7f020015;
+        public static final int semi_black=0x7f020017;
+        public static final int tab_border=0x7f02000d;
+        public static final int tab_contacts=0x7f02000e;
+        public static final int tab_contacts_selected=0x7f02000f;
+        public static final int tab_discover=0x7f020010;
+        public static final int tab_discover_selected=0x7f020011;
+        public static final int tab_me=0x7f020012;
+        public static final int tab_me_selected=0x7f020013;
+        public static final int tab_reminder=0x7f020014;
+        public static final int tab_reminder_selected=0x7f020015;
+        public static final int tab_selector_checked_bg=0x7f020016;
     }
     public static final class id {
-        public static final int ac_armd_pick_date=0x7f0b0009;
-        public static final int ac_armd_set=0x7f0b000a;
-        public static final int action_add_friend=0x7f0b0015;
-        public static final int action_add_qr=0x7f0b0016;
-        public static final int action_add_reminder=0x7f0b0014;
-        public static final int action_settings=0x7f0b0012;
-        public static final int action_show_calendar=0x7f0b0013;
+        public static final int ac_armd_content=0x7f0b0009;
+        public static final int ac_armd_pick_date=0x7f0b000a;
+        public static final int ac_armd_set=0x7f0b000b;
+        public static final int action_add_friend=0x7f0b0020;
+        public static final int action_add_qr=0x7f0b0021;
+        public static final int action_add_reminder=0x7f0b001f;
+        public static final int action_settings=0x7f0b001d;
+        public static final int action_show_calendar=0x7f0b001e;
+        public static final int content=0x7f0b0019;
         public static final int dateEt=0x7f0b0001;
         public static final int datePicker=0x7f0b0000;
-        public static final int main_content=0x7f0b000b;
+        public static final int delete1=0x7f0b0014;
+        public static final int delete2=0x7f0b001b;
+        public static final int listview_list=0x7f0b001c;
+        public static final int llayout_left=0x7f0b0013;
+        public static final int llayout_right=0x7f0b0016;
+        public static final int main_content=0x7f0b000c;
         public static final int name=0x7f0b0004;
-        public static final int ok=0x7f0b0011;
-        public static final int rbContacts=0x7f0b000e;
-        public static final int rbDiscover=0x7f0b000f;
-        public static final int rbMe=0x7f0b0010;
-        public static final int rbReminder=0x7f0b000d;
+        public static final int ok=0x7f0b0012;
+        public static final int other1=0x7f0b0015;
+        public static final int other2=0x7f0b001a;
+        public static final int rbContacts=0x7f0b000f;
+        public static final int rbDiscover=0x7f0b0010;
+        public static final int rbMe=0x7f0b0011;
+        public static final int rbReminder=0x7f0b000e;
         public static final int sDates=0x7f0b0005;
         public static final int sDay=0x7f0b0007;
         public static final int sMonth=0x7f0b0006;
-        public static final int tab_menu=0x7f0b000c;
+        public static final int tab_menu=0x7f0b000d;
+        public static final int time=0x7f0b0018;
         public static final int timeEt=0x7f0b0003;
         public static final int timePicker=0x7f0b0002;
         public static final int times=0x7f0b0008;
+        public static final int title=0x7f0b0017;
     }
     public static final class layout {
         public static final int activity_add_friend=0x7f030000;
@@ -91,10 +109,11 @@ public final class R {
         public static final int activity_add_reminder=0x7f030002;
         public static final int activity_main=0x7f030003;
         public static final int activity_pick_datetime=0x7f030004;
-        public static final int tab_main_contacts=0x7f030005;
-        public static final int tab_main_discover=0x7f030006;
-        public static final int tab_main_me=0x7f030007;
-        public static final int tab_main_reminder=0x7f030008;
+        public static final int reminder_list_item=0x7f030005;
+        public static final int tab_main_contacts=0x7f030006;
+        public static final int tab_main_discover=0x7f030007;
+        public static final int tab_main_me=0x7f030008;
+        public static final int tab_main_reminder=0x7f030009;
     }
     public static final class menu {
         public static final int add_friend=0x7f0a0000;
@@ -108,12 +127,17 @@ public final class R {
         public static final int alarm=0x7f040000;
     }
     public static final class string {
-        public static final int action_settings=0x7f08000d;
-        public static final int add_reminder_action_title=0x7f08000a;
+        public static final int ac_ar_et_content_hint=0x7f080013;
+        /**  add_reminder_action 
+         */
+        public static final int ac_ar_title=0x7f080012;
+        public static final int action_settings=0x7f08000c;
+        public static final int alarm_received=0x7f080014;
+        public static final int alarm_title=0x7f080015;
         public static final int app_name=0x7f080000;
-        public static final int confirm=0x7f080013;
-        public static final int date_template=0x7f080010;
-        public static final int empty=0x7f08000b;
+        public static final int confirm=0x7f080016;
+        public static final int date_template=0x7f08000f;
+        public static final int empty=0x7f08000a;
         public static final int hello_world=0x7f080001;
         public static final int main_action_title=0x7f080002;
         public static final int main_add_friend=0x7f080004;
@@ -123,11 +147,11 @@ public final class R {
         public static final int main_tab_discover=0x7f080008;
         public static final int main_tab_me=0x7f080009;
         public static final int main_tab_reminder=0x7f080006;
-        public static final int title_activity_add_friend=0x7f08000f;
-        public static final int title_activity_add_qr=0x7f08000e;
-        public static final int title_activity_add_reminder=0x7f08000c;
-        public static final int title_activity_pick_date_time=0x7f080011;
-        public static final int title_activity_pick_datetime=0x7f080012;
+        public static final int title_activity_add_friend=0x7f08000e;
+        public static final int title_activity_add_qr=0x7f08000d;
+        public static final int title_activity_add_reminder=0x7f08000b;
+        public static final int title_activity_pick_date_time=0x7f080010;
+        public static final int title_activity_pick_datetime=0x7f080011;
     }
     public static final class style {
         public static final int ActionButton=0x7f090003;

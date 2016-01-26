@@ -23,8 +23,6 @@ public class AlarmActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		System.err.println("hahahahahaha");
-		
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
@@ -50,12 +48,11 @@ public class AlarmActivity extends Activity {
 		
 		new AlertDialog.Builder(AlarmActivity.this)
 				.setIcon(R.drawable.ai_reminder)
-				.setTitle("It's time to do something.")
+				.setTitle(R.string.alarm_title)
 				.setMessage(alarmText)
-				.setPositiveButton("Done",
+				.setPositiveButton(R.string.alarm_received,
 						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
+							public void onClick(DialogInterface dialog, int whichButton) {
 								//deleteData(NoteActivity.Alarming_index);
 								
 								Intent intentSV = new Intent(AlarmActivity.this, AlarmService.class);

@@ -23,7 +23,7 @@ public class AddFriendActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_friend);
 		
-		getActionBar().setTitle(R.string.add_reminder_action_title);
+		getActionBar().setTitle(R.string.ac_ar_title);
 		getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		

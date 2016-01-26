@@ -11,7 +11,7 @@
     <string name="main_tab_contacts">通讯录</string>
     <string name="main_tab_discover">发现</string>
     <string name="main_tab_me">我</string>
-    <string name="add_reminder_action_title">返回</string>
+    
     <string name="empty"></string>
     <string name="title_activity_add_reminder">AddReminderActivity</string>
     <string name="action_settings">Settings</string>
@@ -20,6 +20,13 @@
     <string name="date_template" formatted="false">%d年%d月%d日 周%s %d:%d</string>
     <string name="title_activity_pick_date_time">PickDateTimeActivity</string>
     <string name="title_activity_pick_datetime">PickDatetimeActivity</string>
+    
+    <!-- add_reminder_action -->
+    <string name="ac_ar_title">返回</string>
+    <string name="ac_ar_et_content_hint">提醒内容</string>
 
+    <string name="alarm_received">知道啦</string>
+    <string name="alarm_title">提醒</string>
+    
     <string name="confirm">确定</string>
 </resources>

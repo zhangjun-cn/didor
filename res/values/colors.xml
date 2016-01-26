@@ -13,5 +13,13 @@
     <drawable name="semi_black">#80000000</drawable>
     
     
+    <color name="wheat">#F5DEB3</color>
+    <color name="slategray">#708090</color>
+    <color name="floralwhite">#FFFAF0</color>
+    <color name="tomato">#FF6347</color>
+    <color name="orange">#FFA500</color>
+    <color name="black">#000000</color>
+    
+    
 
 </resources>

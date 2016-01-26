@@ -8,9 +8,23 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.dali.didor.AddReminderActivity" >
     
+    <EditText
+        android:id="@+id/ac_armd_content"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_margin="3dp"
+        android:background="@drawable/reminder_edittext_shape"
+        android:gravity="top"
+        android:hint="@string/ac_ar_et_content_hint"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#aa000000"
+        android:textSize="16sp" />
+    
     <Button
         android:id="@+id/ac_armd_pick_date"
-        style="@style/ActionButton"/>
+        style="@style/ActionButton"
+        android:layout_below="@id/ac_armd_content"/>
 
     <Button
         android:id="@+id/ac_armd_set"
