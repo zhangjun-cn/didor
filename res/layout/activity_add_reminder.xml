@@ -13,7 +13,7 @@
         android:layout_width="fill_parent"
         android:layout_height="60dp"
         android:layout_margin="3dp"
-        android:background="@drawable/reminder_edittext_shape"
+        android:background="@drawable/shape_edit_text"
         android:gravity="top"
         android:hint="@string/ac_ar_et_content_hint"
         android:paddingLeft="10dp"

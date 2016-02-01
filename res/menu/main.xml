@@ -15,20 +15,20 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:icon="@drawable/ai_reminder"
-        android:title="@string/main_add_reminder"/>
+        android:title="@string/action_add_reminder"/>
     
     <item
         android:id="@+id/action_add_friend"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:icon="@drawable/ai_friend"
-        android:title="@string/main_add_friend"/>
+        android:title="@string/action_add_friend"/>
     
     <item
         android:id="@+id/action_add_qr"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:icon="@drawable/ai_qr"
-        android:title="@string/main_add_qr"/>
+        android:title="@string/action_add_qr"/>
 
 </menu>

@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+    
+    <TextView  
+        android:id="@+id/item_reminder"  
+        style="@style/ActionItem"
+        android:drawableStart="@drawable/ai_reminder"
+        android:drawableLeft="@drawable/ai_reminder"
+        android:text="@string/action_add_reminder"
+        android:background="@drawable/layer_action_border"/>
+
+	<TextView  
+        android:id="@+id/item_friend"  
+        style="@style/ActionItem"
+        android:drawableStart="@drawable/ai_friend"
+        android:drawableLeft="@drawable/ai_friend"
+        android:text="@string/action_add_friend"
+        android:background="@drawable/layer_action_border"/>
+    
+    <TextView  
+        android:id="@+id/item_qr"  
+        style="@style/ActionItem"
+        android:drawableStart="@drawable/ai_qr"
+        android:drawableLeft="@drawable/ai_qr"
+        android:text="@string/action_add_qr"/>
+
+</LinearLayout>

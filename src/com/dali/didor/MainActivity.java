@@ -3,7 +3,6 @@ package com.dali.didor;
 import java.lang.reflect.Method;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -23,10 +22,9 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		getActionBar().setTitle(R.string.main_action_title);
-		getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 
-		getSupportFragmentManager().beginTransaction().replace(R.id.main_content, new ReminderFragment()).commit();
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.main_content, new ReminderFragment()).commit();
 
 		RadioGroup myTabRg = (RadioGroup) findViewById(R.id.tab_menu);
 		myTabRg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -52,10 +50,12 @@ public class MainActivity extends FragmentActivity {
 				}
 
 				if (f != null) {
-					getSupportFragmentManager().beginTransaction().replace(R.id.main_content, f).commit();
+					getSupportFragmentManager().beginTransaction()
+							.replace(R.id.main_content, f).commit();
 				}
 			}
 		});
+
 	}
 
 	@Override

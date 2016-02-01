@@ -1,26 +1,21 @@
 package com.dali.didor;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
-
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.PopupWindow;
 
 public class AddQRActivity extends Activity {
 
-	Spinner mySpinner;
+	private PopupWindow popupwindow;
+	private Button button;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,45 +27,54 @@ public class AddQRActivity extends Activity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		
-		Button button = (Button) findViewById(R.id.name);
-		
-		Calendar calendar = Calendar.getInstance(Locale.CHINA);
-		button.setText(String.format(getResources().getString(R.string.date_template),
-				calendar.get(Calendar.YEAR),
-				calendar.get(Calendar.MONTH) + 1,
-				calendar.get(Calendar.DAY_OF_MONTH) + 1,
-				calendar.get(Calendar.DAY_OF_WEEK) - 1,
-				calendar.get(Calendar.HOUR_OF_DAY),
-				calendar.get(Calendar.MINUTE)
-				));
+		button = (Button) findViewById(R.id.name);
+		button.setOnClickListener(new OnClickListener() {
 
-		mySpinner = (Spinner) findViewById(R.id.sDates);
-		List<Integer> lst = new ArrayList<Integer>();  
-	    for (int i = 0; i < 10; i++) {  
-	        lst.add(2016 + i);  
-	    }
-	    ArrayAdapter<Integer> myaAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, lst);
-	    myaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	    
-	    mySpinner.setAdapter(myaAdapter);  
-	    
-	    mySpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-	    	@Override
-	        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {  
-	            /* 
-	             * ids是刚刚新建的list里面的ID 
-	             */  
-	            int ids = (Integer) mySpinner.getSelectedItem();  
-	            System.out.println(ids);  
-	            Toast.makeText(getApplicationContext(), String.valueOf(ids), Toast.LENGTH_LONG).show();  
-	        }  
-	  
-	        @Override  
-	        public void onNothingSelected(AdapterView<?> arg0) {  
-	            // TODO Auto-generated method stub  
-	              
-	        }
-	    });  
+			@Override
+			public void onClick(View v) {
+				if (popupwindow != null&&popupwindow.isShowing()) {
+					popupwindow.dismiss();
+					return;
+				} else {
+					initmPopupWindowView();
+					popupwindow.showAsDropDown(v, 0, 5);
+				}
+				
+			}});
+		
+	}
+	
+	public void initmPopupWindowView() {
+
+		// // ��ȡ�Զ��岼���ļ�pop.xml����ͼ
+		View customView = getLayoutInflater().inflate(R.layout.menu_add,
+				null, false);
+		// ����PopupWindowʵ��,200,150�ֱ��ǿ�Ⱥ͸߶�
+		popupwindow = new PopupWindow(customView, 500, 560);
+		// ���ö���Ч�� [R.style.AnimationFade ���Լ����ȶ���õ�]
+		//popupwindow.setAnimationStyle(R.style.AnimationFade);
+		// �Զ���view��Ӵ����¼�
+		customView.setOnTouchListener(new OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (popupwindow != null && popupwindow.isShowing()) {
+					popupwindow.dismiss();
+					popupwindow = null;
+				}
+
+				return false;
+			}
+		});
+
+		/** ���������ʵ���Զ�����ͼ�Ĺ��� */
+//		Button btton2 = (Button) customView.findViewById(R.id.button2);
+//		Button btton3 = (Button) customView.findViewById(R.id.button3);
+//		Button btton4 = (Button) customView.findViewById(R.id.button4);
+//		btton2.setOnClickListener(this);
+//		btton3.setOnClickListener(this);
+//		btton4.setOnClickListener(this);
+
 	}
 
 	@Override

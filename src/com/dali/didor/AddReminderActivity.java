@@ -19,6 +19,7 @@ import android.widget.EditText;
 import com.dali.didor.alarm.AlarmReceiver;
 import com.dali.didor.db.AlarmDatabaseHelper;
 import com.dali.didor.model.Datetime;
+import com.dali.didor.utils.Constants;
 
 public class AddReminderActivity extends Activity {
 	
@@ -42,7 +43,7 @@ public class AddReminderActivity extends Activity {
 		getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		alarmDatabaseHelper = new AlarmDatabaseHelper(AddReminderActivity.this, "dali.didor.sql");
+		alarmDatabaseHelper = new AlarmDatabaseHelper(AddReminderActivity.this, Constants.DB_NAME);
 		
 		datetime = new Datetime();
 		

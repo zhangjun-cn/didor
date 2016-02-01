@@ -9,69 +9,39 @@
         android:id="@+id/main_content"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" >
-
-    </FrameLayout>
+        android:layout_weight="1" />
 
     <RadioGroup
         android:id="@+id/tab_menu"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/tab_border" >
+        android:background="@drawable/layer_tab_border"
+        android:orientation="horizontal" >
 
         <RadioButton
             android:id="@+id/rbReminder"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:button="@null"
+            style="@style/TabButton"
             android:checked="true"
-            android:gravity="center_horizontal|bottom"
-            android:paddingTop="2dp"
-            android:text="@string/main_tab_reminder"
-            android:drawableTop="@drawable/main_tab_reminder"
-            android:textColor="@color/tab_selector_tv_color" />
+            android:drawableTop="@drawable/selector_tab_reminder"
+            android:text="@string/main_tab_reminder" />
 
         <RadioButton
             android:id="@+id/rbContacts"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:button="@null"
-            android:gravity="center_horizontal|bottom"
-            android:paddingTop="2dp"
-            android:text="@string/main_tab_contacts"
-            android:drawableTop="@drawable/main_tab_contacts"
-            android:textColor="@color/tab_selector_tv_color" />
+            style="@style/TabButton"
+            android:drawableTop="@drawable/selector_tab_contacts"
+            android:text="@string/main_tab_contacts" />
 
         <RadioButton
             android:id="@+id/rbDiscover"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:button="@null"
-            android:gravity="center_horizontal|bottom"
-            android:paddingTop="2dp"
-            android:text="@string/main_tab_discover"
-            android:drawableTop="@drawable/main_tab_discover"
-            android:textColor="@color/tab_selector_tv_color" />
+            style="@style/TabButton"
+            android:drawableTop="@drawable/selector_tab_discover"
+            android:text="@string/main_tab_discover" />
 
         <RadioButton
             android:id="@+id/rbMe"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:button="@null"
-            android:gravity="center_horizontal|bottom"
-            android:paddingTop="2dp"
-            android:text="@string/main_tab_me"
-            android:drawableTop="@drawable/main_tab_me"
-            android:textColor="@color/tab_selector_tv_color" />
+            style="@style/TabButton"
+            android:drawableTop="@drawable/selector_tab_me"
+            android:text="@string/main_tab_me" />
     </RadioGroup>
 
 </LinearLayout>
