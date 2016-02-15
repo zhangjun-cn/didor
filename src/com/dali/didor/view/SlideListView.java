@@ -10,7 +10,6 @@ import android.widget.ListView;
 import android.widget.Scroller;
 
 public class SlideListView extends ListView {
-	
 
 	public static int MOD_FORBID = 0;
 
@@ -71,12 +70,10 @@ public class SlideListView extends ListView {
 		
 		int[] location = new int[2];  
         this.getLocationOnScreen(location);
-        System.out.println("location-->" + location[0]);
         if(location[0] > 10) {
         	return super.onTouchEvent(ev);
         }
         
-        System.out.println("slideLock-->" + slideLock.getCurrent());
         if(slideLock.getCurrent() != SlideLock.NONE && slideLock.getCurrent() != SlideLock.LIST) {
         	return super.onTouchEvent(ev);
         }
@@ -86,7 +83,6 @@ public class SlideListView extends ListView {
 
 		switch (action) {
 		case MotionEvent.ACTION_DOWN:
-			System.out.println("touch-->" + "down");
 			if(this.mode == MOD_FORBID){
 				return super.onTouchEvent(ev);
 			}
@@ -108,24 +104,25 @@ public class SlideListView extends ListView {
 			}
 
 			itemView = getChildAt(slidePosition - getFirstVisiblePosition());
-			
-			if(this.mode == MOD_BOTH){
-				this.leftLength = -itemView.getPaddingLeft();
-				this.rightLength = -itemView.getPaddingRight();
-			}else if(this.mode == MOD_LEFT){
-				this.leftLength = -itemView.getPaddingLeft();
-			}else if(this.mode == MOD_RIGHT){
-				this.rightLength = -itemView.getPaddingRight();
+			if (itemView != null) {
+				if (this.mode == MOD_BOTH) {
+					this.leftLength = -itemView.getPaddingLeft();
+					this.rightLength = -itemView.getPaddingRight();
+				} else if (this.mode == MOD_LEFT) {
+					this.leftLength = -itemView.getPaddingLeft();
+				} else if (this.mode == MOD_RIGHT) {
+					this.rightLength = -itemView.getPaddingRight();
+				}
 			}
 			
 			break;
 		case MotionEvent.ACTION_MOVE:
-			System.out.println("touch-->" + "move");
-			
+			if(itemView == null) {
+				return true;
+			}
+
 			int[] itemViewLocation = new int[2];  
 			itemView.getLocationOnScreen(itemViewLocation);
-	        System.out.println("location-->" + (ev.getX() - downX));
-	        System.out.println("location-->>" + rightLength);
 			
 			if (!canMove
 					&& slidePosition != AdapterView.INVALID_POSITION
@@ -161,7 +158,6 @@ public class SlideListView extends ListView {
 				return true;
 			}
 		case MotionEvent.ACTION_UP:
-			System.out.println("touch-->" + "up");
 			if (canMove){
 				canMove = false;
 				scrollByDistanceX();
@@ -173,7 +169,7 @@ public class SlideListView extends ListView {
 	}
 
 	private void scrollByDistanceX() {
-		if(this.mode == MOD_FORBID){
+		if(this.mode == MOD_FORBID || itemView == null){
 			return;
 		}
 		if(itemView.getScrollX() > 0 && (this.mode == MOD_BOTH || this.mode == MOD_RIGHT)){

@@ -18,6 +18,11 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int action_item_text=0x7f070013;
+        public static final int alarm_item_datetime=0x7f070012;
+        public static final int alarm_item_day=0x7f070011;
+        public static final int alarm_item_title=0x7f070010;
+        public static final int alarm_list_bg=0x7f07000f;
         public static final int black=0x7f070009;
         public static final int color_0=0x7f07000a;
         public static final int color_1=0x7f07000b;
@@ -33,7 +38,7 @@ public final class R {
          */
         public static final int red=0x7f070000;
         public static final int slategray=0x7f070005;
-        public static final int tab_selector_tv_color=0x7f07000f;
+        public static final int tab_selector_tv_color=0x7f070014;
         public static final int tomato=0x7f070007;
         public static final int wheat=0x7f070004;
     }
@@ -124,8 +129,8 @@ public final class R {
         public static final int timePicker=0x7f0c0002;
         public static final int title=0x7f0c0016;
         public static final int title_bar_menu_btn=0x7f0c001e;
-        public static final int title_bar_name=0x7f0c0020;
-        public static final int title_bar_plus_btn=0x7f0c001f;
+        public static final int title_bar_name=0x7f0c001f;
+        public static final int title_bar_plus_btn=0x7f0c0020;
     }
     public static final class layout {
         public static final int activity_add_friend=0x7f030000;

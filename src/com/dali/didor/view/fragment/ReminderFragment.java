@@ -1,6 +1,5 @@
 package com.dali.didor.view.fragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
@@ -23,7 +22,10 @@ import android.widget.Toast;
 
 import com.dali.didor.AddReminderActivity;
 import com.dali.didor.R;
-import com.dali.didor.model.TestModel;
+import com.dali.didor.db.AlarmTableDao;
+import com.dali.didor.db.DatabaseHelper;
+import com.dali.didor.model.AlarmItem;
+import com.dali.didor.utils.Constants;
 import com.dali.didor.view.SlideListView;
 import com.dali.didor.view.SlideLock;
 import com.dali.didor.view.SlideMenu;
@@ -42,20 +44,31 @@ public class ReminderFragment extends Fragment {
 	
 	private SlideListView mListView;
 	private SlideAdapter adapter;
-	private List<TestModel> listModels = new ArrayList<TestModel>();
+	private List<AlarmItem> listModels;
 	
 	private SlideLock slideLock = new SlideLock();
+	
+	AlarmTableDao alarmTableDao;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
     }
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		listModels = alarmTableDao.getNotFinishedAlarmItems();
+		mListView.setAdapter(adapter);
+	}
  
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     	this.layoutInflater = inflater;
     	View result =  inflater.inflate(R.layout.tab_main_reminder, null);
+    	
+    	alarmTableDao = new AlarmTableDao(new DatabaseHelper(result.getContext(), Constants.DB_NAME));
     	
     	slideMenu = (SlideMenu) result.findViewById(R.id.slide_menu);
 		ImageView menuImg = (ImageView) result.findViewById(R.id.title_bar_menu_btn);
@@ -94,30 +107,19 @@ public class ReminderFragment extends Fragment {
 					initmPopupWindowView();
 					popupwindow.setFocusable(true);  
 			        popupwindow.setOutsideTouchable(true); 
-					popupwindow.showAsDropDown(v, -260, 26);
+					popupwindow.showAsDropDown(v, -260, 28);
 				}
 				
 			}});
-		
-		////////////////////////////////////////
+
 		adapter = new SlideAdapter();
-		
+
 		mListView = (SlideListView) result.findViewById(R.id.listview_list);
 		mListView.initSlideMode(SlideListView.MOD_RIGHT);
-		for (int i = 0; i < 40; i++) {
-			TestModel item = new TestModel();
-				item.setTitle(i + "title");
-				item.setContent(i + "content");
-				item.setTime(i + "time");
-			listModels.add(item);
-		}
-		mListView.setAdapter(adapter);
-		//mListView.setOnItemClickListener(this);
-		////////////////////////////////////////
-		
+
 		slideMenu.setSlideLock(slideLock);
 		mListView.setSlideLock(slideLock);
-		
+
 		return result;
     }
     
@@ -155,9 +157,6 @@ public class ReminderFragment extends Fragment {
 
 	}
 	
-	
-	////////////////////////////////////////////////////////////
-	
 	private static class ViewHolder {
         public TextView title;
         public TextView time;
@@ -166,7 +165,6 @@ public class ReminderFragment extends Fragment {
         public RelativeLayout other1;
         public RelativeLayout delete2;
         public RelativeLayout other2;
-
     }
 
 	private class SlideAdapter extends BaseAdapter {
@@ -203,11 +201,11 @@ public class ReminderFragment extends Fragment {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            TestModel item = listModels.get(position);
+            AlarmItem item = listModels.get(position);
 
             holder.title.setText(item.getTitle());
             holder.content.setText(item.getContent());
-            holder.time.setText(item.getTime());
+            holder.time.setText(item.getStartTime().toString());
             holder.delete1.setOnClickListener(new OnClickListener() {
 				
 				@Override

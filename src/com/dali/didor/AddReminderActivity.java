@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,23 +15,22 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.dali.didor.alarm.AlarmReceiver;
-import com.dali.didor.db.AlarmDatabaseHelper;
+import com.dali.didor.db.AlarmTableDao;
+import com.dali.didor.db.DatabaseHelper;
+import com.dali.didor.model.AlarmItem;
+import com.dali.didor.model.AlarmRepeatType;
 import com.dali.didor.model.Datetime;
 import com.dali.didor.utils.Constants;
 
 public class AddReminderActivity extends Activity {
-	
-	static final private int PICK_DATETIME_REQUEST_CODE = 1;
-	
-	private long alarmId;
-	
+
+	private static final int PICK_DATETIME_REQUEST_CODE = 1;
+
 	private Button pickDateBtn;
-	
+
 	private EditText content;
-	
+
 	private Datetime datetime;
-	
-	private AlarmDatabaseHelper alarmDatabaseHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +39,18 @@ public class AddReminderActivity extends Activity {
 		getActionBar().setTitle(R.string.ac_ar_title);
 		getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		
-		alarmDatabaseHelper = new AlarmDatabaseHelper(AddReminderActivity.this, Constants.DB_NAME);
-		
+
 		datetime = new Datetime();
-		
+
 		pickDateBtn = (Button) findViewById(R.id.ac_armd_pick_date);
 		pickDateBtn.setText(datetime.display(this));
 		pickDateBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent();
 				intent.setClass(AddReminderActivity.this, PickDatetimeActivity.class);
-				Bundle bundle=new Bundle();
-			    bundle.putString("datetime", datetime.toString());
-			    intent.putExtras(bundle);
+				Bundle bundle = new Bundle();
+				bundle.putString("datetime", datetime.toString());
+				intent.putExtras(bundle);
 				startActivityForResult(intent, PICK_DATETIME_REQUEST_CODE);
 			}
 		});
@@ -64,13 +59,24 @@ public class AddReminderActivity extends Activity {
 		Button setBtn = (Button) findViewById(R.id.ac_armd_set);
 		setBtn.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				addData(datetime.toString(), content.getText().toString(), "");
+
+				AlarmItem alarmItem = new AlarmItem();
+				alarmItem.setContent(content.getText().toString());
+				alarmItem.setStartTime(datetime);
+				alarmItem.setEndTime(datetime);
+				alarmItem.setCreatedTime(new Datetime());
+				alarmItem.setRepeatType(AlarmRepeatType.OneTime);
+
+				DatabaseHelper alarmDatabaseHelper = new DatabaseHelper(AddReminderActivity.this, Constants.DB_NAME);
+				AlarmTableDao dao = new AlarmTableDao(alarmDatabaseHelper);
+				long alarmId = dao.insertAlarmItem(alarmItem);
+
 				AlarmManager mAlarm = (AlarmManager) getSystemService(Service.ALARM_SERVICE);
 				Intent intent = new Intent(AddReminderActivity.this, AlarmReceiver.class);
-				Bundle bundle=new Bundle();
-			    bundle.putInt("alarm_index", (int)alarmId);
-			    intent.putExtras(bundle);
-				PendingIntent pendingIntent = PendingIntent.getBroadcast(AddReminderActivity.this, (int)alarmId, intent, 0);
+				Bundle bundle = new Bundle();
+				bundle.putInt("alarm_index", (int) alarmId);
+				intent.putExtras(bundle);
+				PendingIntent pendingIntent = PendingIntent.getBroadcast(AddReminderActivity.this, (int) alarmId, intent, 0);
 				mAlarm.set(AlarmManager.RTC_WAKEUP, datetime.getTimeInMillis(), pendingIntent);
 
 				Intent mWidgetIntent = new Intent();
@@ -82,20 +88,10 @@ public class AddReminderActivity extends Activity {
 		});
 	}
 
-	public void addData(String time, String message, String audio) {
-		ContentValues values = new ContentValues();
-		values.put("time", time);
-		values.put("message", message);
-		values.put("audio", audio);
-		SQLiteDatabase db = alarmDatabaseHelper.getWritableDatabase();
-		alarmId = db.insert("alarm", null, values);
-		db.close();
-	}
-
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == PICK_DATETIME_REQUEST_CODE) {
-			if(resultCode == android.app.Activity.RESULT_OK) {
+			if (resultCode == android.app.Activity.RESULT_OK) {
 				Bundle bundle = data.getExtras();
 				datetime = Datetime.parse(bundle.getString("datetime"));
 				pickDateBtn.setText(datetime.display(this));
@@ -106,7 +102,7 @@ public class AddReminderActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.add_reminder, menu);
+		// getMenuInflater().inflate(R.menu.add_reminder, menu);
 		return true;
 	}
 
@@ -116,17 +112,15 @@ public class AddReminderActivity extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		//if (id == R.id.action_settings) {
-		//	return true;
-		//}
-		
-		if(id == android.R.id.home) {
+		// if (id == R.id.action_settings) {
+		// return true;
+		// }
+
+		if (id == android.R.id.home) {
 			finish();
-            return true;
+			return true;
 		}
-		
-		
-		
+
 		return super.onOptionsItemSelected(item);
 	}
 }

@@ -10,46 +10,53 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.dali.didor.R;
-import com.dali.didor.db.AlarmDatabaseHelper;
+import com.dali.didor.db.AlarmTableDao;
+import com.dali.didor.db.DatabaseHelper;
+import com.dali.didor.model.AlarmItem;
+import com.dali.didor.utils.Constants;
 
 public class AlarmActivity extends Activity {
-	
-	private AlarmDatabaseHelper alarmDatabaseHelper;
-	
-	private String alarmTime;
-	private String alarmText;
-	
+
+	// private DatabaseHelper alarmDatabaseHelper;
+	//
+	// private String alarmTime;
+	// private String alarmText;
+
+	AlarmItem alarmItem;
+	AlarmTableDao alarmTableDao;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
-		
+
 		Intent intentSV = new Intent(AlarmActivity.this, AlarmService.class);
 		startService(intentSV);
-		
-		alarmDatabaseHelper = new AlarmDatabaseHelper(AlarmActivity.this, "dali.didor.sql");
-		
+
 		Bundle bundle = this.getIntent().getExtras();
 		int alarmIndedx = bundle.getInt("alarm_index");
-		SQLiteDatabase db = alarmDatabaseHelper.getReadableDatabase();
-		Cursor cursor = db.query("alarm", null, "_id=?", new String[] { alarmIndedx + "" }, null, null, null);
-		if (cursor.moveToFirst()) {
-			alarmTime = cursor.getString(cursor.getColumnIndex("time"));
-			alarmText = cursor.getString(cursor.getColumnIndex("message"));
-		}
-		System.out.println("alarmTime-->"+alarmTime+"alarmText-->"+alarmText);
 
-		db.close();
+		alarmTableDao = new AlarmTableDao(new DatabaseHelper(AlarmActivity.this, Constants.DB_NAME));
+		alarmItem = alarmTableDao.getAlarmItem(alarmIndedx);
+
+//		SQLiteDatabase db = alarmDatabaseHelper.getReadableDatabase();
+//		Cursor cursor = db.query("alarm", null, "_id=?", new String[] { alarmIndedx + "" }, null, null, null);
+//		if (cursor.moveToFirst()) {
+//			alarmTime = cursor.getString(cursor.getColumnIndex("time"));
+//			alarmText = cursor.getString(cursor.getColumnIndex("message"));
+//		}
+
+		//db.close();
 		//addData();
 		//deleteData(NoteActivity.Alarming_index);
 		
 		new AlertDialog.Builder(AlarmActivity.this)
 				.setIcon(R.drawable.ai_reminder)
 				.setTitle(R.string.alarm_title)
-				.setMessage(alarmText)
+				.setMessage(alarmItem.getContent())
 				.setPositiveButton(R.string.alarm_received,
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int whichButton) {

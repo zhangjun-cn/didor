@@ -46,10 +46,16 @@ public class Datetime {
 		Calendar calendar = Calendar.getInstance(locale);
 		calendar.set(year, month, day, hour, minute, 0);
 		parseCalendar(calendar);
-	}
+	} 
 
 	public Datetime() {
 		parseCalendar(Calendar.getInstance(locale));
+	}
+	
+	public Datetime(long milliseconds) {
+		Calendar calendar = Calendar.getInstance(locale);
+		calendar.setTimeInMillis(milliseconds);
+		parseCalendar(calendar);
 	}
 
 	public Datetime(int year, int month, int day, int hour, int minute) {

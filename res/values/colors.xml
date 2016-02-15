@@ -7,7 +7,7 @@
     <color name="main_tab_bg">#fffafa</color>
     
     <color name="main_tab_text">#828282</color>
-    <color name="main_tab_selected_text">#56abe4</color>
+    <color name="main_tab_selected_text">#2672b2</color>
 
     <!-- Retrieved via Resources.getDrawable() and friends. -->
     <drawable name="semi_black">#80000000</drawable>
@@ -27,5 +27,12 @@
     <color name="color_4">#a286c0</color>
     
     
+    <color name="alarm_list_bg">#ffffff</color>
+    
+    <color name="alarm_item_title">#2672b2</color>
+    <color name="alarm_item_day">#cdcdcd</color>
+    <color name="alarm_item_datetime">#686868</color>
+    
+    <color name="action_item_text">#ffffff</color>
 
 </resources>

@@ -1,7 +1,7 @@
 package com.dali.didor;
 
 import com.dali.didor.alarm.AlarmReceiver;
-import com.dali.didor.db.AlarmDatabaseHelper;
+import com.dali.didor.db.DatabaseHelper;
 import com.dali.didor.model.Datetime;
 import com.dali.didor.utils.Constants;
 
@@ -21,24 +21,22 @@ public class BootAlarmActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		Datetime now = new Datetime();
-		AlarmDatabaseHelper alarmDatabaseHelper = new AlarmDatabaseHelper(BootAlarmActivity.this, Constants.DB_NAME);
+		DatabaseHelper alarmDatabaseHelper = new DatabaseHelper(BootAlarmActivity.this, Constants.DB_NAME);
 		SQLiteDatabase db = alarmDatabaseHelper.getReadableDatabase();
 		Cursor cursor = db.query("alarm", null, null, null, null, null, null);
 
 		while (cursor.moveToNext()) {
-			Datetime alarmTime = Datetime.parse(cursor.getString(cursor
-					.getColumnIndex("time")));
+			Datetime alarmTime = Datetime.parse(cursor.getString(cursor.getColumnIndex("time")));
 			if (alarmTime.getTimeInMillis() < now.getTimeInMillis()) {
 				continue;
 			}
 
 			AlarmManager mAlarm = (AlarmManager) getSystemService(Service.ALARM_SERVICE);
-			Intent intent = new Intent(BootAlarmActivity.this,
-					AlarmReceiver.class);
+			Intent intent = new Intent(BootAlarmActivity.this, AlarmReceiver.class);
 			Bundle bundle = new Bundle();
 			bundle.putInt("alarm_index", cursor.getInt(0));
 			intent.putExtras(bundle);
-			PendingIntent pendingIntent = PendingIntent.getBroadcast( BootAlarmActivity.this, cursor.getInt(0), intent, 0);
+			PendingIntent pendingIntent = PendingIntent.getBroadcast(BootAlarmActivity.this, cursor.getInt(0), intent, 0);
 			mAlarm.set(AlarmManager.RTC_WAKEUP, alarmTime.getTimeInMillis(), pendingIntent);
 		}
 

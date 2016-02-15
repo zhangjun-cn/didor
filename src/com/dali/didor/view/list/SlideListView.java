@@ -67,7 +67,6 @@ public class SlideListView extends ListView {
 		int lastX = (int) ev.getX();
 		switch (action) {
 		case MotionEvent.ACTION_DOWN:
-			System.out.println("touch-->" + "down");
 			if(this.mode == MOD_FORBID){
 				return super.onTouchEvent(ev);
 			}
@@ -97,7 +96,6 @@ public class SlideListView extends ListView {
 			}
 			break;
 		case MotionEvent.ACTION_MOVE:
-			System.out.println("touch-->" + "move");
 			if (canMove) {
 				requestDisallowInterceptTouchEvent(true);
 				int deltaX = downX - lastX;
@@ -125,7 +123,6 @@ public class SlideListView extends ListView {
 				onTouchEvent(cancelEvent);
 			}
 		case MotionEvent.ACTION_UP:
-			System.out.println("touch-->" + "up");
 			if (canMove){
 				canMove = false;
 				scrollByDistanceX();
